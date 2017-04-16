@@ -13,20 +13,7 @@ class TexBlobController extends Controller
      */
     public function index()
     {
-        return [
-        	[
-        		'id' => 1,
-				'tex' => 'Soit $x \\in \\mathbb{R}$'
-        	],
-			[
-				'id' => 2,
-				'tex' => 'Soit $n \\in \\mathbb{N}$'
-			],
-			[
-				'id' => 3,
-				'tex' => 'Supposons que $f$ est une fonction complexe'
-			]
-        ];
+		return \Response::json(\App\TexBlob::select('id', 'tex')->get());
     }
 
     /**
