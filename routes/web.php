@@ -16,5 +16,5 @@ Route::get('/', function () {
 });
 
 Route::resource('texblobs', 'TexBlobController', ['only' => [
-	'index', 'show'
+	'index', 'show', 'store'
 ], 'middleware' => 'cors']);

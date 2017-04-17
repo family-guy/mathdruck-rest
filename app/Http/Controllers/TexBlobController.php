@@ -42,7 +42,8 @@ class TexBlobController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tex = $request->input('tex');
+		return \Response::json(\App\TexBlob::create(['tex' => $tex]));
     }
 
     /**
