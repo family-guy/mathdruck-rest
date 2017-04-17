@@ -14,6 +14,14 @@ class TexBlobController extends Controller
     public function index()
     {
 		return \Response::json(\App\TexBlob::select('id', 'tex')->get());
+		
+		/* 
+		above equivalent to
+		
+		return \Response::json(\DB::table('tex_blobs')->select('id', 'tex')->get()); 
+		
+		"Since Eloquent models are query builders, you should review all of the methods available on the query builder. You may use any of these methods in your Eloquent queries." - https://laravel.com/docs/5.4/eloquent
+		*/
     }
 
     /**
@@ -45,7 +53,7 @@ class TexBlobController extends Controller
      */
     public function show($id)
     {
-        //
+		return \Response::json(\App\TexBlob::find($id, ['id', 'tex']));
     }
 
     /**
