@@ -7,8 +7,10 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class TexBlobsIndexTest extends TestCase
+class TexBlobsStoreTest extends TestCase
 {
+	use DatabaseTransactions;
+	
     /**
      * A basic test example.
      *
@@ -16,23 +18,11 @@ class TexBlobsIndexTest extends TestCase
      */
 	public function testExample()
 	{
-		$response = $this->json('GET', '/texblobs');
+		$tex = 'this is a test';
+		$response = $this->json('POST', '/texblobs', ['tex' => $tex]);
 
 		$response
 			->assertStatus(200)
-			->assertJson([
-				[
-					'id' => 1,
-					'tex' => 'Soit $x \\in \\mathbb{R}$'
-				],
-				[
-					'id' => 2,
-					'tex' => 'Soit $n \\in \\mathbb{N}$'
-				],
-				[
-					'id' => 3,
-					'tex' => 'Supposons que $f$ est une fonction complexe'
-				]
-			]);
+			->assertJson(['tex' => $tex]);
 	}
 }
