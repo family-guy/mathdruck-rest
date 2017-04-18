@@ -20,7 +20,7 @@ class TexBlobsIndexTest extends TestCase
 
 		$response
 			->assertStatus(200)
-			->assertExactJson([
+			->assertJson([
 				[
 					'id' => 1,
 					'tex' => 'Soit $x \\in \\mathbb{R}$'
